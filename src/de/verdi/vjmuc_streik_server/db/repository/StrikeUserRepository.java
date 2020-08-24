@@ -10,4 +10,6 @@ public interface StrikeUserRepository extends CrudRepository<StrikeUser, Integer
 	
 	@Override
 	List<StrikeUser> findAll();
+	
+	StrikeUser deleteById(int id);
 }

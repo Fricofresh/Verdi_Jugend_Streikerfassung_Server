@@ -1,212 +1,144 @@
 package de.verdi.vjmuc_streik_server.db.model;
 
-import java.time.LocalDate;
-import java.util.Optional;
-
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class StrikeUser {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column
-	private Boolean isNewMember;
+	private Boolean becomeMember;
 	
-	@Column
-	private String iBAN;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private AccoundDetails accountDetail;
 	
-	@Column
-	private String BIC;
+	private String childBenefit;
 	
-	@Column
-	private Boolean useKnownAccountData;
+	private String company;
 	
-	@Column
-	private Integer childrens;
+	private String coPartner;
 	
-	@Column
-	private String companyName;
+	private String currentSalary;
 	
-	@Column
-	private Boolean isStrikingAlone;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private GenerallSalaryData generallSalaryData;
 	
-	@Column
-	private Double currentSalary;
-	
-	@Column
-	private Boolean isAzubi;
-	
-	@Column
-	private String traineeProfession;
-	
-	@Column
-	private Integer yearOfTraining;
-	
-	@Column
-	private String paymentLevel; // Endgeldgruppe
-	
-	@Column
 	private Double lostWorkingHours;
 	
-	@Column
-	private Double workingHours;
-	
-	@Column
 	private Long membershipNumber;
 	
-	@Column
-	private String forename;
+	@OneToOne(cascade = CascadeType.ALL)
+	private PersonalDetails personalDetails;
 	
-	@Column
-	private String surname;
+	private Boolean strikePay;
 	
-	@Column
-	private LocalDate birthday;
+	private Boolean wantBecomeMember;
 	
-	@Column
-	private String eMail;
+	private Double workingHours;
 	
 	public StrikeUser() {
 		
 	}
 	
-	public int getId() {
+	public StrikeUser(Boolean becomeMember, AccoundDetails accountDetail, String childBenefit, String company,
+			String coPartner, String currentSalary, GenerallSalaryData generallSalaryData, Double lostWorkingHours,
+			Long membershipNumber, PersonalDetails personalDetails, Boolean strikePay, Boolean wantBecomeMember,
+			Double workingHours) {
 		
-		return id;
+		super();
+		this.becomeMember = becomeMember;
+		this.accountDetail = accountDetail;
+		this.childBenefit = childBenefit;
+		this.company = company;
+		this.coPartner = coPartner;
+		this.currentSalary = currentSalary;
+		this.generallSalaryData = generallSalaryData;
+		this.lostWorkingHours = lostWorkingHours;
+		this.membershipNumber = membershipNumber;
+		this.personalDetails = personalDetails;
+		this.strikePay = strikePay;
+		this.wantBecomeMember = wantBecomeMember;
+		this.workingHours = workingHours;
 	}
 	
-	public Optional<Boolean> getIsNewMember() {
+	public Boolean getBecomeMember() {
 		
-		return Optional.ofNullable(isNewMember);
+		return becomeMember;
 	}
 	
-	public void setIsNewMember(Boolean isNewMember) {
+	public void setBecomeMember(Boolean becomeMember) {
 		
-		if (null == isNewMember)
-			isNewMember = false;
-		this.isNewMember = isNewMember;
+		this.becomeMember = becomeMember;
 	}
 	
-	public Optional<String> getiBAN() {
+	public AccoundDetails getAccountDetail() {
 		
-		return Optional.ofNullable(iBAN);
+		return accountDetail;
 	}
 	
-	public void setiBAN(String iBAN) {
+	public void setAccountDetail(AccoundDetails accountDetail) {
 		
-		this.iBAN = iBAN;
+		this.accountDetail = accountDetail;
 	}
 	
-	public Optional<String> getBIC() {
+	public String getChildBenefit() {
 		
-		return Optional.ofNullable(BIC);
+		return childBenefit;
 	}
 	
-	public void setBIC(String BIC) {
+	public void setChildBenefit(String childBenefit) {
 		
-		this.BIC = BIC;
+		this.childBenefit = childBenefit;
 	}
 	
-	public Optional<Boolean> getUseKnownAccountData() {
+	public String getCompany() {
 		
-		return Optional.ofNullable(useKnownAccountData);
+		return company;
 	}
 	
-	public void setUseKnownAccountData(Boolean useKnownAccountData) {
+	public void setCompany(String company) {
 		
-		this.useKnownAccountData = useKnownAccountData;
+		this.company = company;
 	}
 	
-	public Optional<Integer> getChildrens() {
+	public String getCoPartner() {
 		
-		return Optional.ofNullable(childrens);
+		return coPartner;
 	}
 	
-	public void setChildrens(Integer childrens) {
+	public void setCoPartner(String coPartner) {
 		
-		this.childrens = childrens;
+		this.coPartner = coPartner;
 	}
 	
-	public Optional<String> getCompanyName() {
+	public String getCurrentSalary() {
 		
-		return Optional.ofNullable(companyName);
+		return currentSalary;
 	}
 	
-	public void setCompanyName(String companyName) {
-		
-		this.companyName = companyName;
-	}
-	
-	public Optional<Boolean> getIsStrikingAlone() {
-		
-		return Optional.ofNullable(isStrikingAlone);
-	}
-	
-	public void setIsStrikingAlone(Boolean isStrikingAlone) {
-		
-		this.isStrikingAlone = isStrikingAlone;
-	}
-	
-	public Optional<Double> getCurrentSalary() {
-		
-		return Optional.ofNullable(currentSalary);
-	}
-	
-	public void setCurrentSalary(Double currentSalary) {
+	public void setCurrentSalary(String currentSalary) {
 		
 		this.currentSalary = currentSalary;
 	}
 	
-	public Optional<Boolean> getIsAzubi() {
+	public GenerallSalaryData getGenerallSalaryData() {
 		
-		return Optional.ofNullable(isAzubi);
+		return generallSalaryData;
 	}
 	
-	public void setIsAzubi(Boolean isAzubi) {
+	public void setGenerallSalaryData(GenerallSalaryData generallSalaryData) {
 		
-		this.isAzubi = isAzubi;
+		this.generallSalaryData = generallSalaryData;
 	}
 	
-	public Optional<String> getTraineeProfession() {
+	public Double getLostWorkingHours() {
 		
-		return Optional.ofNullable(traineeProfession);
-	}
-	
-	public void setTraineeProfession(String traineeProfession) {
-		
-		this.traineeProfession = traineeProfession;
-	}
-	
-	public Optional<Integer> getYearOfTraining() {
-		
-		return Optional.ofNullable(yearOfTraining);
-	}
-	
-	public void setYearOfTraining(Integer yearOfTraining) {
-		
-		this.yearOfTraining = yearOfTraining;
-	}
-	
-	public Optional<String> getPaymentLevel() {
-		
-		return Optional.ofNullable(paymentLevel);
-	}
-	
-	public void setPaymentLevel(String paymentLevel) {
-		
-		this.paymentLevel = paymentLevel;
-	}
-	
-	public Optional<Double> getLostWorkingHours() {
-		
-		return Optional.ofNullable(lostWorkingHours);
+		return lostWorkingHours;
 	}
 	
 	public void setLostWorkingHours(Double lostWorkingHours) {
@@ -214,19 +146,9 @@ public class StrikeUser {
 		this.lostWorkingHours = lostWorkingHours;
 	}
 	
-	public Optional<Double> getWorkingHours() {
+	public Long getMembershipNumber() {
 		
-		return Optional.ofNullable(workingHours);
-	}
-	
-	public void setWorkingHours(Double workingHours) {
-		
-		this.workingHours = workingHours;
-	}
-	
-	public Optional<Long> getMembershipNumber() {
-		
-		return Optional.ofNullable(membershipNumber);
+		return membershipNumber;
 	}
 	
 	public void setMembershipNumber(Long membershipNumber) {
@@ -234,44 +156,44 @@ public class StrikeUser {
 		this.membershipNumber = membershipNumber;
 	}
 	
-	public Optional<String> getForename() {
+	public PersonalDetails getPersonalDetails() {
 		
-		return Optional.ofNullable(forename);
+		return personalDetails;
 	}
 	
-	public void setForename(String forename) {
+	public void setPersonalDetails(PersonalDetails personalDetails) {
 		
-		this.forename = forename;
+		this.personalDetails = personalDetails;
 	}
 	
-	public Optional<String> getSurname() {
+	public Boolean getStrikePay() {
 		
-		return Optional.ofNullable(surname);
+		return strikePay;
 	}
 	
-	public void setSurname(String surname) {
+	public void setStrikePay(Boolean strikePay) {
 		
-		this.surname = surname;
+		this.strikePay = strikePay;
 	}
 	
-	public Optional<LocalDate> getBirthday() {
+	public Boolean getWantBecomeMember() {
 		
-		return Optional.ofNullable(birthday);
+		return wantBecomeMember;
 	}
 	
-	public void setBirthday(LocalDate birthday) {
+	public void setWantBecomeMember(Boolean wantBecomeMember) {
 		
-		this.birthday = birthday;
+		this.wantBecomeMember = wantBecomeMember;
 	}
 	
-	public Optional<String> getEMail() {
+	public Double getWorkingHours() {
 		
-		return Optional.ofNullable(eMail);
+		return workingHours;
 	}
 	
-	public void setEMail(String eMail) {
+	public void setWorkingHours(Double workingHours) {
 		
-		this.eMail = eMail;
+		this.workingHours = workingHours;
 	}
 	
 }
