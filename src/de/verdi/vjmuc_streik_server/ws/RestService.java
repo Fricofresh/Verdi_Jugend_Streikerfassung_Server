@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import de.verdi.vjmuc_streik_server.db.model.StrikeUser;
 import de.verdi.vjmuc_streik_server.db.service.StrikeUserService;
 
 @RestController
+@RequestMapping("/v1")
 public class RestService {
 	
 	@Autowired
@@ -52,5 +54,11 @@ public class RestService {
 		catch (EmptyResultDataAccessException e) {
 			return new ResponseEntity<StrikeUser>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@GetMapping("/info")
+	public String info() {
+		
+		return "Server is running";
 	}
 }

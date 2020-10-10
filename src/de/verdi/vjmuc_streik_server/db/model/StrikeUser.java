@@ -4,7 +4,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class StrikeUser {
@@ -12,188 +11,231 @@ public class StrikeUser {
 	@Id
 	private int id;
 	
-	private Boolean becomeMember;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private SalaryData generallSalaryData;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	private AccoundDetails accountDetail;
+	private StrikeDetails strikeDetails;
 	
-	private String childBenefit;
+	private Boolean flgMember;
 	
-	private String company;
+	private Boolean flgMembershipNumber;
 	
-	private String coPartner;
+	private Boolean flgKnowSalary;
 	
-	private String currentSalary;
+	private Boolean flgChildren;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	private GenerallSalaryData generallSalaryData;
+	private Boolean flgPartner;
 	
-	private Double lostWorkingHours;
+	private Boolean flgStandardAccount;
 	
-	private Long membershipNumber;
+	private Boolean flgApprentice;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	private PersonalDetails personalDetails;
+	private String name;
 	
-	private Boolean strikePay;
+	private String prename;
 	
-	private Boolean wantBecomeMember;
+	private String birthday;
 	
-	private Double workingHours;
+	private String email;
+	
+	private String iban;
+	
+	private String bic;
+	
+	private Integer children;
 	
 	public StrikeUser() {
 		
 	}
 	
-	public StrikeUser(Boolean becomeMember, AccoundDetails accountDetail, String childBenefit, String company,
-			String coPartner, String currentSalary, GenerallSalaryData generallSalaryData, Double lostWorkingHours,
-			Long membershipNumber, PersonalDetails personalDetails, Boolean strikePay, Boolean wantBecomeMember,
-			Double workingHours) {
+	public StrikeUser(SalaryData generallSalaryData, StrikeDetails strikeDetails, Boolean flgMember,
+			Boolean flgMembershipNumber, Boolean flgKnowSalary, Boolean flgChildren, Boolean flgPartner,
+			Boolean flgStandardAccount, Boolean flgApprentice, String name, String prename, String birthday,
+			String email, String iban, String bic, Integer children) {
 		
 		super();
-		this.becomeMember = becomeMember;
-		this.accountDetail = accountDetail;
-		this.childBenefit = childBenefit;
-		this.company = company;
-		this.coPartner = coPartner;
-		this.currentSalary = currentSalary;
 		this.generallSalaryData = generallSalaryData;
-		this.lostWorkingHours = lostWorkingHours;
-		this.membershipNumber = membershipNumber;
-		this.personalDetails = personalDetails;
-		this.strikePay = strikePay;
-		this.wantBecomeMember = wantBecomeMember;
-		this.workingHours = workingHours;
+		this.strikeDetails = strikeDetails;
+		this.flgMember = flgMember;
+		this.flgMembershipNumber = flgMembershipNumber;
+		this.flgKnowSalary = flgKnowSalary;
+		this.flgChildren = flgChildren;
+		this.flgPartner = flgPartner;
+		this.flgStandardAccount = flgStandardAccount;
+		this.flgApprentice = flgApprentice;
+		this.name = name;
+		this.prename = prename;
+		this.birthday = birthday;
+		this.email = email;
+		this.iban = iban;
+		this.bic = bic;
+		this.children = children;
 	}
 	
-	public Boolean getBecomeMember() {
-		
-		return becomeMember;
-	}
-	
-	public void setBecomeMember(Boolean becomeMember) {
-		
-		this.becomeMember = becomeMember;
-	}
-	
-	public AccoundDetails getAccountDetail() {
-		
-		return accountDetail;
-	}
-	
-	public void setAccountDetail(AccoundDetails accountDetail) {
-		
-		this.accountDetail = accountDetail;
-	}
-	
-	public String getChildBenefit() {
-		
-		return childBenefit;
-	}
-	
-	public void setChildBenefit(String childBenefit) {
-		
-		this.childBenefit = childBenefit;
-	}
-	
-	public String getCompany() {
-		
-		return company;
-	}
-	
-	public void setCompany(String company) {
-		
-		this.company = company;
-	}
-	
-	public String getCoPartner() {
-		
-		return coPartner;
-	}
-	
-	public void setCoPartner(String coPartner) {
-		
-		this.coPartner = coPartner;
-	}
-	
-	public String getCurrentSalary() {
-		
-		return currentSalary;
-	}
-	
-	public void setCurrentSalary(String currentSalary) {
-		
-		this.currentSalary = currentSalary;
-	}
-	
-	public GenerallSalaryData getGenerallSalaryData() {
+	public SalaryData getGenerallSalaryData() {
 		
 		return generallSalaryData;
 	}
 	
-	public void setGenerallSalaryData(GenerallSalaryData generallSalaryData) {
+	public void setGenerallSalaryData(SalaryData generallSalaryData) {
 		
 		this.generallSalaryData = generallSalaryData;
 	}
 	
-	public Double getLostWorkingHours() {
+	public StrikeDetails getStrikeDetails() {
 		
-		return lostWorkingHours;
+		return strikeDetails;
 	}
 	
-	public void setLostWorkingHours(Double lostWorkingHours) {
+	public void setStrikeDetails(StrikeDetails strikeDetails) {
 		
-		this.lostWorkingHours = lostWorkingHours;
+		this.strikeDetails = strikeDetails;
 	}
 	
-	public Long getMembershipNumber() {
+	public Boolean getFlgMember() {
 		
-		return membershipNumber;
+		return flgMember;
 	}
 	
-	public void setMembershipNumber(Long membershipNumber) {
+	public void setFlgMember(Boolean flgMember) {
 		
-		this.membershipNumber = membershipNumber;
+		this.flgMember = flgMember;
 	}
 	
-	public PersonalDetails getPersonalDetails() {
+	public Boolean getFlgMembershipNumber() {
 		
-		return personalDetails;
+		return flgMembershipNumber;
 	}
 	
-	public void setPersonalDetails(PersonalDetails personalDetails) {
+	public void setFlgMembershipNumber(Boolean flgMembershipNumber) {
 		
-		this.personalDetails = personalDetails;
+		this.flgMembershipNumber = flgMembershipNumber;
 	}
 	
-	public Boolean getStrikePay() {
+	public Boolean getFlgKnowSalary() {
 		
-		return strikePay;
+		return flgKnowSalary;
 	}
 	
-	public void setStrikePay(Boolean strikePay) {
+	public void setFlgKnowSalary(Boolean flgKnowSalary) {
 		
-		this.strikePay = strikePay;
+		this.flgKnowSalary = flgKnowSalary;
 	}
 	
-	public Boolean getWantBecomeMember() {
+	public Boolean getFlgChildren() {
 		
-		return wantBecomeMember;
+		return flgChildren;
 	}
 	
-	public void setWantBecomeMember(Boolean wantBecomeMember) {
+	public void setFlgChildren(Boolean flgChildren) {
 		
-		this.wantBecomeMember = wantBecomeMember;
+		this.flgChildren = flgChildren;
 	}
 	
-	public Double getWorkingHours() {
+	public Boolean getFlgPartner() {
 		
-		return workingHours;
+		return flgPartner;
 	}
 	
-	public void setWorkingHours(Double workingHours) {
+	public void setFlgPartner(Boolean flgPartner) {
 		
-		this.workingHours = workingHours;
+		this.flgPartner = flgPartner;
+	}
+	
+	public Boolean getFlgStandardAccount() {
+		
+		return flgStandardAccount;
+	}
+	
+	public void setFlgStandardAccount(Boolean flgStandardAccount) {
+		
+		this.flgStandardAccount = flgStandardAccount;
+	}
+	
+	public Boolean getFlgApprentice() {
+		
+		return flgApprentice;
+	}
+	
+	public void setFlgApprentice(Boolean flgApprentice) {
+		
+		this.flgApprentice = flgApprentice;
+	}
+	
+	public String getName() {
+		
+		return name;
+	}
+	
+	public void setName(String name) {
+		
+		this.name = name;
+	}
+	
+	public String getPrename() {
+		
+		return prename;
+	}
+	
+	public void setPrename(String prename) {
+		
+		this.prename = prename;
+	}
+	
+	public String getBirthday() {
+		
+		return birthday;
+	}
+	
+	public void setBirthday(String birthday) {
+		
+		this.birthday = birthday;
+	}
+	
+	public String getEmail() {
+		
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		
+		this.email = email;
+	}
+	
+	public String getIban() {
+		
+		return iban;
+	}
+	
+	public void setIban(String iban) {
+		
+		this.iban = iban;
+	}
+	
+	public String getBic() {
+		
+		return bic;
+	}
+	
+	public void setBic(String bic) {
+		
+		this.bic = bic;
+	}
+	
+	public Integer getChildren() {
+		
+		return children;
+	}
+	
+	public void setChildren(Integer children) {
+		
+		this.children = children;
+	}
+	
+	public int getId() {
+		
+		return id;
 	}
 	
 }
