@@ -16,7 +16,7 @@ public class SecurityUserService implements UserDetailsService {
 	@Value("${key.cn}")
 	private String commonName;
 	
-	private Log log = LogFactory.getLog(getClass());
+	private Log log = LogFactory.getLog(SecurityUserService.class.getClass());
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) {

@@ -2,6 +2,7 @@ package de.verdi.vjmuc_streik_server;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,6 +18,9 @@ public class SpringSecrurityConfig extends WebSecurityConfigurerAdapter {
 	
 	private Log log = LogFactory.getLog(getClass());
 	
+	@Autowired
+	private SecurityUserService securityUserService;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
@@ -25,7 +29,7 @@ public class SpringSecrurityConfig extends WebSecurityConfigurerAdapter {
 			log.debug("User with Username '" + auth.getName() + "' is trying to connect!");
 		
 		http.csrf().disable().authorizeRequests().anyRequest().authenticated().and().x509()
-				.subjectPrincipalRegex("CN=(.*?)(?:,|$)");
+				.subjectPrincipalRegex("CN=(.*?)(?:,|$)").userDetailsService(securityUserService);
 	}
 	
 }
