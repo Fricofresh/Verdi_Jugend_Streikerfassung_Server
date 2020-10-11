@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -22,12 +24,15 @@ import de.verdi.vjmuc_streik_server.db.service.StrikeUserService;
 @RequestMapping("/v1")
 public class RestService {
 	
+	private Log logger = LogFactory.getLog(RestService.class);
+	
 	@Autowired
 	private StrikeUserService strikeUserService;
 	
 	@PostMapping("/users")
 	public List<StrikeUser> newUsers(@RequestBody List<StrikeUser> restUserData) {
 		
+		logger.info("Neuer Post Request /users");
 		List<StrikeUser> result = new ArrayList<>();
 		for (StrikeUser restUser : restUserData) {
 			Optional<StrikeUser> addStrikeUser = strikeUserService.addStrikeUser(restUser);
@@ -42,12 +47,14 @@ public class RestService {
 	@GetMapping("/users/all")
 	public List<StrikeUser> getUsers() {
 		
+		logger.info("Neuer Post Request /users/all");
 		return strikeUserService.getAllUsers();
 	}
 	
 	@DeleteMapping("/user/{id}")
 	public ResponseEntity<StrikeUser> removeUser(int id) {
 		
+		logger.info("Neuer Post Request /users/" + id);
 		try {
 			return new ResponseEntity<StrikeUser>(strikeUserService._removeUser(id), HttpStatus.OK);
 		}
@@ -58,6 +65,8 @@ public class RestService {
 	
 	@GetMapping("/info")
 	public String info() {
+		
+		logger.info("Neuer Post Request /info");
 		
 		return "Server is running";
 	}

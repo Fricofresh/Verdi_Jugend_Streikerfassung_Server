@@ -25,8 +25,8 @@ public class SpringSecrurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		// http.authorizeRequests().anyRequest().authenticated().and().x509().subjectPrincipalRegex("CN=(.*?)(?:,|$)");
-		http.csrf().disable().authorizeRequests().anyRequest().anonymous().and().x509()
-		.subjectPrincipalRegex("CN=(.*?)(?:,|$)").userDetailsService(userDetailsService());
+		http.csrf().disable().authorizeRequests().anyRequest().authenticated().and().x509()
+				.subjectPrincipalRegex("CN=(.*?)(?:,|$)").userDetailsService(userDetailsService());
 	}
 	
 	@Override
