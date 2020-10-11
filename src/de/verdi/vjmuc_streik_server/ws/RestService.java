@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.verdi.vjmuc_streik_server.db.model.StrikeUser;
+import de.verdi.vjmuc_streik_server.db.model.UserModel;
 import de.verdi.vjmuc_streik_server.db.service.StrikeUserService;
 
 @RestController
@@ -30,12 +30,12 @@ public class RestService {
 	private StrikeUserService strikeUserService;
 	
 	@PostMapping("/users")
-	public List<StrikeUser> newUsers(@RequestBody List<StrikeUser> restUserData) {
+	public List<UserModel> newUsers(@RequestBody List<UserModel> restUserData) {
 		
 		logger.info("Neuer Post Request /users");
-		List<StrikeUser> result = new ArrayList<>();
-		for (StrikeUser restUser : restUserData) {
-			Optional<StrikeUser> addStrikeUser = strikeUserService.addStrikeUser(restUser);
+		List<UserModel> result = new ArrayList<>();
+		for (UserModel restUser : restUserData) {
+			Optional<UserModel> addStrikeUser = strikeUserService.addStrikeUser(restUser);
 			addStrikeUser.ifPresent(result::add);
 		}
 		if (result.isEmpty()) {
@@ -45,21 +45,21 @@ public class RestService {
 	}
 	
 	@GetMapping("/users/all")
-	public List<StrikeUser> getUsers() {
+	public List<UserModel> getUsers() {
 		
 		logger.info("Neuer Post Request /users/all");
 		return strikeUserService.getAllUsers();
 	}
 	
 	@DeleteMapping("/user/{id}")
-	public ResponseEntity<StrikeUser> removeUser(int id) {
+	public ResponseEntity<UserModel> removeUser(int id) {
 		
 		logger.info("Neuer Post Request /users/" + id);
 		try {
-			return new ResponseEntity<StrikeUser>(strikeUserService._removeUser(id), HttpStatus.OK);
+			return new ResponseEntity<UserModel>(strikeUserService._removeUser(id), HttpStatus.OK);
 		}
 		catch (EmptyResultDataAccessException e) {
-			return new ResponseEntity<StrikeUser>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<UserModel>(HttpStatus.NOT_FOUND);
 		}
 	}
 	

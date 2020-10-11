@@ -6,13 +6,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class StrikeUser {
+public class UserModel {
 	
 	@Id
 	private int id;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	private SalaryData generallSalaryData;
+	private SalaryData salaryData;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private StrikeDetails strikeDetails;
@@ -45,17 +45,17 @@ public class StrikeUser {
 	
 	private Integer children;
 	
-	public StrikeUser() {
+	public UserModel() {
 		
 	}
 	
-	public StrikeUser(SalaryData generallSalaryData, StrikeDetails strikeDetails, Boolean flgMember,
-			Boolean flgMembershipNumber, Boolean flgKnowSalary, Boolean flgChildren, Boolean flgPartner,
-			Boolean flgStandardAccount, Boolean flgApprentice, String name, String prename, String birthday,
-			String email, String iban, String bic, Integer children) {
+	public UserModel(SalaryData salaryData, StrikeDetails strikeDetails, Boolean flgMember, Boolean flgMembershipNumber,
+			Boolean flgKnowSalary, Boolean flgChildren, Boolean flgPartner, Boolean flgStandardAccount,
+			Boolean flgApprentice, String name, String prename, String birthday, String email, String iban, String bic,
+			Integer children) {
 		
 		super();
-		this.generallSalaryData = generallSalaryData;
+		this.salaryData = salaryData;
 		this.strikeDetails = strikeDetails;
 		this.flgMember = flgMember;
 		this.flgMembershipNumber = flgMembershipNumber;
@@ -75,12 +75,12 @@ public class StrikeUser {
 	
 	public SalaryData getGenerallSalaryData() {
 		
-		return generallSalaryData;
+		return salaryData;
 	}
 	
-	public void setGenerallSalaryData(SalaryData generallSalaryData) {
+	public void setGenerallSalaryData(SalaryData salaryData) {
 		
-		this.generallSalaryData = generallSalaryData;
+		this.salaryData = salaryData;
 	}
 	
 	public StrikeDetails getStrikeDetails() {

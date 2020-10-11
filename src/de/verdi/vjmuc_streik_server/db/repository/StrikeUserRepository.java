@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import de.verdi.vjmuc_streik_server.db.model.StrikeUser;
+import de.verdi.vjmuc_streik_server.db.model.UserModel;
 
-public interface StrikeUserRepository extends CrudRepository<StrikeUser, Integer> {
+public interface StrikeUserRepository extends CrudRepository<UserModel, Integer> {
 	
 	@Override
-	List<StrikeUser> findAll();
+	List<UserModel> findAll();
 	
-	StrikeUser deleteById(int id);
+	UserModel deleteById(int id);
 }
