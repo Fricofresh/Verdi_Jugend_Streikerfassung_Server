@@ -2,6 +2,8 @@ package de.verdi.vjmuc_streik_server.db.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -9,6 +11,7 @@ import javax.persistence.ManyToOne;
 public class UserModel {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -31,6 +34,8 @@ public class UserModel {
 	
 	private Boolean flgApprentice;
 	
+	private String membershipNumber;
+	
 	private String name;
 	
 	private String prename;
@@ -51,8 +56,8 @@ public class UserModel {
 	
 	public UserModel(SalaryData salaryData, StrikeDetails strikeDetails, Boolean flgMember, Boolean flgMembershipNumber,
 			Boolean flgKnowSalary, Boolean flgChildren, Boolean flgPartner, Boolean flgStandardAccount,
-			Boolean flgApprentice, String name, String prename, String birthday, String email, String iban, String bic,
-			Integer children) {
+			Boolean flgApprentice, String membershipNumber, String name, String prename, String birthday, String email,
+			String iban, String bic, Integer children) {
 		
 		super();
 		this.salaryData = salaryData;
@@ -64,6 +69,7 @@ public class UserModel {
 		this.flgPartner = flgPartner;
 		this.flgStandardAccount = flgStandardAccount;
 		this.flgApprentice = flgApprentice;
+		this.membershipNumber = membershipNumber;
 		this.name = name;
 		this.prename = prename;
 		this.birthday = birthday;
@@ -73,12 +79,22 @@ public class UserModel {
 		this.children = children;
 	}
 	
-	public SalaryData getGenerallSalaryData() {
+	public String getMembershipNumber() {
+		
+		return membershipNumber;
+	}
+	
+	public void setMembershipNumber(String membershipNumber) {
+		
+		this.membershipNumber = membershipNumber;
+	}
+	
+	public SalaryData getSalaryData() {
 		
 		return salaryData;
 	}
 	
-	public void setGenerallSalaryData(SalaryData salaryData) {
+	public void setSalaryData(SalaryData salaryData) {
 		
 		this.salaryData = salaryData;
 	}
